@@ -9,8 +9,9 @@ Hello World, Maddy edited this page.
     <meta charset="utf-8" />
     <link
         rel="stylesheet"
-        href="https://unpkg.com/leaflet%401.7.1/dist/leaflet.css"
-    />
+        href="https://unpkg.com/leaflet%401.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
     <style>
         body {
             padding: 0;
@@ -23,19 +24,8 @@ Hello World, Maddy edited this page.
     </style>
 </head>
 <body>
-    <div id="map"></div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <script>
-        var map = L.map('map').setView([29.884, -97.9384], 14);
-        mapLink =
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors',
-            maxZoom: 18,
-            }).addTo(map);
-    </script>
+    <div id="map">
+      <script src="external.js"></script>
+    </div>
 </body>
 </html>
