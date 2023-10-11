@@ -75,3 +75,14 @@ var buffered = turf.buffer(point, 5, {units: 'miles'});
 L.geoJSON(point).addTo(map);
 L.geoJSON(buffered).addTo(map);
 //END BRODDES ADDITION---------------------------------------------------------------------
+
+//Jasmine ADDITION
+//Added a Midpoint between two points within Texas State University Campus
+var point1 = turf.point([-97.93698526599997, 29.88602537400004]);
+var point2 = turf.point([-97.95322051899996, 29.886329154000066]);
+var midpoint = turf.midpoint(point1, point2);
+//Added the two points and the midpoint to the Map
+L.geoJSON(point1).addTo(map);
+L.geoJSON(point2).addTo(map);
+L.geoJSON(midpoint).addTo(map);
+//END Jasmine ADDITION
