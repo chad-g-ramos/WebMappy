@@ -66,3 +66,12 @@ var centerCampus = turf.centerOfMass(polygonC);
 L.geoJSON(centerCampus).addTo(map);
 
 //END CHADS ADDITION---------------------------------------------------------
+
+//BRODDES ADDITION-----------------------------------------------------------------------
+//Created a point at the center of San Marcos and created a buffer with a 5 miles radius
+var point = turf.point([-97.9414, 29.883]);
+var buffered = turf.buffer(point, 5, {units: 'miles'});
+//Added the point and buffer to the map
+L.geoJSON(point).addTo(map);
+L.geoJSON(buffered).addTo(map);
+//END BRODDES ADDITION---------------------------------------------------------------------
