@@ -1,9 +1,76 @@
-
 body {
   padding: 0;
   margin: 0;
 }
-html, body, #map {
+html,
+body,
+#map {
   height: 100%;
   width: 100%;
+  position: absolute;
+  z-index: -1;
 }
+/*--------------------------------------------------------------*/
+
+/* Dropdown container to position the dropdown content */
+.dropdown {
+  /*float this container to the right of the map*/
+  float: right;
+  /*hide the overflow so that the dropdown content doesn't cause a scroll bar*/
+  overflow: hidden;
+  
+}
+
+/* Style the dropdown button */
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: aquamarine;
+  font-family: inherit;
+  margin: 0;
+  width: 100px;
+  text-align: center;
+ 
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+  /*by default the drowpdown is hidden, the display is none.  Only once the cursor is hovering over it does it display*/
+  display: none;
+  /*in order to use z index, a postion element must be set, even though the position is not changed here*/
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  /*setting the zindex to 1 moves the dropdown content infont of the map*/
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  /*keeping the display block causes the dropdown elements to be stacked within the container*/
+  display: block;
+  text-align: left;
+}
+
+
+/* Add a grey background to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown:hover .dropdown-content {
+  /*change the display back to block instead of none when the cursor is hovering over the link*/
+  display: block;
+
+}
+ 
