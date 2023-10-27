@@ -168,18 +168,19 @@ body {
 
 .map-title {
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
-  min-height:7vh;
+  min-height:10vh;
   /*apparently this is a hack to center the text in the containter, set the line-height equal to the div height*/
-  line-height: 7vh;
-  background-color: #04AA6D;
+  line-height: 10vh;
+  background-color: #fff;
   /*padding: 40px 0px; no need for padding, setting the line height and div height*/
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
-  font-weight:200;
-  color: #fff;
+  font-weight:400;
+  color: #291F1E;
   text-align: center;
   /*default font size is usually 16, 1.875*16=30px*/
-  font-size: 1.875em;
+  font-size: 2.5em;
   margin: auto;
+  
   
 }
 
@@ -187,7 +188,7 @@ body {
   /*Using grid displays simplifies setting divs side by side, any child elements will be set in a grid, so to speak*/
   display: grid;
   /*the first grid element in the html (in this case the .map)  will be twice as wide as the seond grid element (the sidebar)*/
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   /*the grid widths will automatically adjust to compensate for any gap created here*/
   grid-gap: 0px;
   /*the height here can be auto, dicated by child elements*/
@@ -234,18 +235,13 @@ body {
   
 }
 
-.infosec-left-content{
-  
-}
 
 .infosec-main-content{
  /* setting this max width bc design website says max width people can read in one column is about 1300px */
   max-width: 1300px;
 }
 
-.infosec-right-content {
-  
-}
+
 
 .infosec-thumbnail, .infosec-image {
   max-width:90%;
