@@ -180,6 +180,10 @@ body {
   /*default font size is usually 16, 1.875*16=30px*/
   font-size: 2.5em;
   margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
   
 }
@@ -219,7 +223,7 @@ body {
   width: 100% ;
   padding: 40px 0 40px 0;
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
-  text-align: left;
+  
   font-size: 1.25em;
   background-color: #fff;
   border-bottom: 2px solid #291F1E;
@@ -229,7 +233,7 @@ body {
   /*the first grid element in the html (in this case the .map)  will be twice as wide as the seond grid element (the sidebar)*/
   grid-template-columns: 0.5fr 3fr 1fr;
   /*the grid widths will automatically adjust to compensate for any gap created here*/
-  grid-gap: 0px;
+  grid-gap: 20px;
   /*the height here can be auto, dicated by child elements*/
   height: auto;
   
@@ -239,6 +243,11 @@ body {
 .infosec-main-content{
  /* setting this max width bc design website says max width people can read in one column is about 1300px */
   max-width: 1300px;
+  text-align: left;
+}
+
+.infosec-right-content {
+  text-align: center;
 }
 
 
@@ -246,6 +255,8 @@ body {
 .infosec-thumbnail, .infosec-image {
   max-width:90%;
   height:auto;
+
+  
 }
 
 
