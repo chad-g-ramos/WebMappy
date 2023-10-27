@@ -1,3 +1,14 @@
+/*colors
+#E8E5DA
+#1B512D
+#291F1E
+#477998
+#26A96C
+
+#04AA6D
+*/
+
+
 /*-----------------------NAV BAR--------------------------------------------*/
 
 
@@ -7,7 +18,7 @@
   background-color: #fff;
   overflow: hidden;
   margin-top: 0;
-  border-bottom: solid 3px #04AA6D;
+  border-bottom: solid 3px #26A96C;
   font-family: 'Comfortaa';
 }
 
@@ -27,7 +38,7 @@
 
 /* Add an active class to highlight the current page */
 .active {
-  background-color: #04AA6D;
+  background-image: linear-gradient(#fff,#26A96C);
   color: white;
 }
 
@@ -122,24 +133,32 @@ body {
   overflow-y: scroll;
 }
 
+#container {
+  /* setting this max width based on web desing best practices */
+  max-width: 1920px;
+  margin: auto;
+}
+
 
 /*---------------------INTRO----------------------------------------------*/
 
 
 
 .intro, .grid-container, .map-title {
-  width:95%;
+  width:100%;
   margin: 0 auto;
 }
 
 .intro {
   /*180 is header height (100) + top and bottom padding (40+40) meaning I want this section to take up 90% of the space available between the navbar and the full viewport height, leaving a small gap of 7vh whic is equal to the map title below */
   height: calc(93vh - 180px);
-  padding: 40px 55px;
+  padding: 40px 0px 40px 0px;
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 36px;
-  background-image: linear-gradient(#04AA6D, #fff);
+  background-color: #fff;
+  border-bottom: 2px solid #291F1E;
+  /* background-image: linear-gradient(#fff,#04AA6D); */
   
 }
 
@@ -158,7 +177,8 @@ body {
   font-weight:200;
   color: #fff;
   text-align: center;
-  font-size: 30px;
+  /*default font size is usually 16, 1.875*16=30px*/
+  font-size: 1.875em;
   margin: auto;
   
 }
@@ -167,7 +187,7 @@ body {
   /*Using grid displays simplifies setting divs side by side, any child elements will be set in a grid, so to speak*/
   display: grid;
   /*the first grid element in the html (in this case the .map)  will be twice as wide as the seond grid element (the sidebar)*/
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 2fr;
   /*the grid widths will automatically adjust to compensate for any gap created here*/
   grid-gap: 0px;
   /*the height here can be auto, dicated by child elements*/
@@ -190,6 +210,49 @@ body {
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
   min-height: 86vh;
 }
+
+/*---------------------INFOSEC---------------------------------------------*/
+
+
+.infosec-grid-container{
+  width: 100% ;
+  padding: 40px 0 40px 0;
+  font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
+  text-align: left;
+  font-size: 1.25em;
+  background-color: #fff;
+  border-bottom: 2px solid #291F1E;
+
+  /*Using grid displays simplifies setting divs side by side, any child elements will be set in a grid, so to speak*/
+  display: grid;
+  /*the first grid element in the html (in this case the .map)  will be twice as wide as the seond grid element (the sidebar)*/
+  grid-template-columns: 0.5fr 3fr 1fr;
+  /*the grid widths will automatically adjust to compensate for any gap created here*/
+  grid-gap: 0px;
+  /*the height here can be auto, dicated by child elements*/
+  height: auto;
+  
+}
+
+.infosec-left-content{
+  
+}
+
+.infosec-main-content{
+ /* setting this max width bc design website says max width people can read in one column is about 1300px */
+  max-width: 1300px;
+}
+
+.infosec-right-content {
+  
+}
+
+.infosec-thumbnail, .infosec-image {
+  max-width:90%;
+  height:auto;
+}
+
+
 
 
 /*---------------------FOOTER----------------------------------------------*/
