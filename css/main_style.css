@@ -170,7 +170,7 @@ body {
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
   min-height:10vh;
   /*apparently this is a hack to center the text in the containter, set the line-height equal to the div height*/
-  line-height: 10vh;
+  /* line-height: 10vh; */
   background-color: #fff;
   /*padding: 40px 0px; no need for padding, setting the line height and div height*/
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
