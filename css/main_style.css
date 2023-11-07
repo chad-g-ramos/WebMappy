@@ -8,6 +8,13 @@
 #04AA6D
 */
 
+h3 {
+  font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
+  font-weight:400;
+  font-size: 1.5em;
+  /* margin-bottom: 0; */
+}
+
 
 /*-----------------------NAV BAR--------------------------------------------*/
 
@@ -119,6 +126,7 @@
 }
 
 
+
 /*---------------------BODY----------------------------------------------*/
 
 
@@ -135,7 +143,7 @@ body {
 
 #container {
   /* setting this max width based on web desing best practices */
-  max-width: 1920px;
+  max-width: 1000px;
   margin: auto;
 }
 
@@ -179,7 +187,7 @@ body {
   text-align: center;
   /*default font size is usually 16, 1.875*16=30px*/
   font-size: 2.5em;
-  width:100%;
+  max-width:1000px;
   margin: 0 auto;
   padding-top: 2vh;
   padding-bottom: 2vh;
@@ -195,12 +203,13 @@ body {
   /*Using grid displays simplifies setting divs side by side, any child elements will be set in a grid, so to speak*/
   display: grid;
   /*the first grid element in the html (in this case the .map)  will be twice as wide as the seond grid element (the sidebar)*/
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr;
   /*the grid widths will automatically adjust to compensate for any gap created here*/
   grid-gap: 0px;
   /*the height here can be auto, dicated by child elements*/
   height: auto;
   margin-bottom: 1vh;
+  border: 2px solid #26A96C;
 }  
 
 .map {
@@ -208,15 +217,34 @@ body {
   background-color: #333;
   font-size: 36px;
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
-  min-height: 86vh;
+  height: 800px;
 }
 
 .sidebar{
   text-align: center;
-  background-color: #666;
-  font-size: 36px;
+  /* background-color: #666; */
+  /* font-size: 36px; */
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
-  min-height: 86vh;
+  max-height: 800px;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-pill{
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
+    display: block;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 1em;
+    
+  
 }
 
 /*---------------------INFOSEC---------------------------------------------*/
