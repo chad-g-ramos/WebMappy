@@ -12,7 +12,7 @@ h3 {
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
   font-weight:400;
   font-size: 1.5em;
-  /* margin-bottom: 0; */
+  
 }
 
 
@@ -58,6 +58,13 @@ a.active {
   font-weight: 400;
 }
 
+/* Add a dark background on topnav links and the dropdown button on hover */
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
+}
+
+
 
 
 /* Dropdown container - needed to position the dropdown content 
@@ -100,11 +107,6 @@ a.active {
   text-align: left;
 } */
 
-/* Add a dark background on topnav links and the dropdown button on hover */
-.topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #555;
-  color: white;
-}
 
 /* Add a grey background to dropdown links on hover */
 /* .dropdown-content a:hover {
@@ -159,10 +161,10 @@ body {
 }
 
 
-/*---------------------INTRO----------------------------------------------*/
+/*---------------------INTRO (not used for now)-----------------------------*/
 
 
-
+/* 
 .intro, .grid-container {
   width:100%;
   margin: 0 auto;
@@ -170,27 +172,28 @@ body {
 
 .intro {
   /*180 is header height (100) + top and bottom padding (40+40) meaning I want this section to take up 90% of the space available between the navbar and the full viewport height, leaving a small gap of 7vh whic is equal to the map title below */
-  height: calc(93vh - 180px);
-  padding: 40px 0px 40px 0px;
+  /* height: calc(93vh - 180px); */
+  /* padding: 40px 0px 40px 0px;
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 36px;
   background-color: #fff;
-  border-bottom: 2px solid #291F1E;
-  /* background-image: linear-gradient(#fff,#04AA6D); */
+  border-bottom: 2px solid #291F1E; */
+  /* background-image: linear-gradient(#fff,#04AA6D); 
   
-}
+} */
 
 
-/*---------------------MAP----------------------------------------------*/
+/*---------------------MAP and legend ----------------------------------*/
 
 
 .map-title {
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
   min-height:10vh;
-  /*apparently this is a hack to center the text in the containter, set the line-height equal to the div height*/
+  /*apparently this is a hack to center the text in the containter, set the line-height equal to the div height NO LONGER NECESSARY, USING DISPLAY FLEX INSTEAD*/
   /* line-height: 10vh; */
   background-color: #fff;
+  /* background-color: #291F1E; */
   /*padding: 40px 0px; no need for padding, setting the line height and div height*/
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
   font-weight:400;
@@ -220,8 +223,11 @@ body {
   /*the height here can be auto, dicated by child elements*/
   height: auto;
   margin-bottom: 1vh;
-  border: 2px solid #26A96C;
+  border-left: 2px solid #26A96C;
+  border-right: 2px solid #26A96C;
+  border-bottom: 2px solid #26A96C;
 }  
+
 
 .map {
   text-align: center;
@@ -260,6 +266,11 @@ body {
 
 /*---------------------INFOSEC---------------------------------------------*/
 
+#learn-more {
+  background-color:#26A96C;
+  
+  
+}
 
 .infosec-grid-container{
   width: 100% ;
@@ -300,6 +311,52 @@ body {
 
   
 }
+
+/*---------------------For small screens----------------------------------------------*/
+
+/*this small screen css needs to be at the bottom of the cascade bc the specificity of the declarations is the same as the declarations 
+for the larger screen.  When that happens, the latter declaration in the cascade will override the former. Therefore if I put this above the 
+other CSS, it will be overwritten by the normal css for large screens, regardless of the @media query, as long as the declarations are the same */
+@media only screen and (max-width: 1000px) {
+  /* For mobile phones: */
+  .grid-container {
+    /* change from display grid to display flex and flex flow: column to move the "sidebar" below the map  */
+    display: flex;
+    flex-flow: column;
+    /* keep the height to auto, designated by the map height, and width to 100%, maybe change to 90 to allow scroll */
+    height:auto;
+    width: 100%;
+    border-top: 2px solid #262626;
+    margin-bottom: 1vh;
+    
+  }
+  .sidebar {
+    /* set the column order of the sidebar which is now display flex column, to position 2, below the map */
+    order:2;
+  }
+  .map {
+    /* set the column order of the map, which is now display flex column, to position 1 above the sidebar */
+    order:1;
+    /* change map height less than screen height*/
+    height: 500px;
+  }
+
+  .sidebar-pill{
+    margin: 2px 20px;  
+  }
+
+  .infosec-grid-container{
+    grid-template-columns: 0.5fr 3fr 0.5fr;
+  }
+
+
+  .infosec-thumbnail, .infosec-image {
+    display:none;
+
+}
+
+
+/*-------------------------------------------------------------------*/
 
 
 
