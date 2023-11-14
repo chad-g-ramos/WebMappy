@@ -25,11 +25,12 @@ h3 {
   background-color: #fff;
   overflow: hidden;
   margin-top: 0;
-  border-bottom: solid 3px #26A96C;
+  /* border-bottom: solid 3px #26A96C; */
   font-family: 'Comfortaa';
   text-align:center;
   width: 100%;
   height: 4vh;
+  box-shadow: 0 8px 8px #777;
  
   
  
@@ -39,7 +40,7 @@ h3 {
 .topnav a {
   /* float: left; removed this to center navbar links on page */
   display: inline;
-  color: #333;
+  color: #999;
   line-height: 4vh; /*set this to the same height as the topnav div height and then set the top and bottom margins the same to center the text vertically*/
   padding: 2vh 2vw;
   text-decoration: none;
@@ -52,10 +53,10 @@ h3 {
 
 /* Add an active class to highlight the current page */
 a.active {
-  background-image: linear-gradient(#fff,#26A96C);
-  color: white;
+  color: #000;
   font-family: 'Montserrat Alternates'; /*Comfortaa'*/
   font-weight: 400;
+  
 }
 
 /* Add a dark background on topnav links and the dropdown button on hover */
@@ -158,6 +159,7 @@ body {
   /* setting this max width based on web desing best practices */
   max-width: 1000px;
   margin: auto;
+  
 }
 
 
@@ -188,29 +190,30 @@ body {
 
 
 .map-title {
-  /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
   min-height:10vh;
-  /*apparently this is a hack to center the text in the containter, set the line-height equal to the div height NO LONGER NECESSARY, USING DISPLAY FLEX INSTEAD*/
-  /* line-height: 10vh; */
-  background-color: #fff;
+  background-color: #000;
   /* background-color: #291F1E; */
-  /*padding: 40px 0px; no need for padding, setting the line height and div height*/
-  font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
-  font-weight:400;
-  color: #291F1E;
-  text-align: center;
-  /*default font size is usually 16, 1.875*16=30px*/
-  font-size: 2.5em;
-  max-width:1000px;
-  margin: 0 auto;
+  /* setting the diplay to flex box allows easy center and vertical alignment of child elements, but for the horizontal to work this div must be 100% width of the webapage (i.e. the main axis) */
+  display: flex;
+  /* this aligns child elements along the cross (vertical) axis */
+  align-items: center;
+  /* this aligns child elements along the main axis */
+  justify-content: center;
+  
+}
+
+#map-title-subdiv {
+  /* image must be placed in a subdiv child element of the container for flex to work */
+  /* note that setting margin to 0 auto would have worked for the container, but you cannot change the background color of the margin because it is outside of the box model therefore to change the header background color, must use a subdiv and flexbox to center instead of margin */
+  width:100%;
+  height: 100%;
   padding-top: 2vw;
   padding-bottom: 2vw;
+  padding-left: 1vw;
+  padding-right:1vw;
+  /* the max width must be set here instead of the parent container */
+  max-width:1000px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  
 }
 
 .grid-container {
@@ -223,9 +226,9 @@ body {
   /*the height here can be auto, dicated by child elements*/
   height: auto;
   margin-bottom: 1vh;
-  border-left: 2px solid #26A96C;
-  border-right: 2px solid #26A96C;
-  border-bottom: 2px solid #26A96C;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  border-bottom: 1px solid #888;
 }  
 
 
@@ -246,6 +249,14 @@ body {
   display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+}
+
+#learn-more {
+  background-color:#000;
+  color: #fff;
+  
+  
 }
 
 .sidebar-pill{
@@ -260,17 +271,18 @@ body {
     margin: 2px 2px;
     cursor: pointer;
     border-radius: 1em;
+    text-decoration: none;
     
   
 }
 
+.sidebar-pill:hover {
+  text-decoration: underline;
+}
+
 /*---------------------INFOSEC---------------------------------------------*/
 
-#learn-more {
-  background-color:#26A96C;
-  
-  
-}
+
 
 .infosec-grid-container{
   width: 100% ;
