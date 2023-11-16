@@ -324,6 +324,30 @@ body {
   
 }
 
+
+/*---------------------About Us----------------------------------------------*/
+
+.about-me{
+  width: 100% ;
+  padding: 40px 0 40px 0;
+  font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
+  
+  font-size: 1.25em;
+  background-color: #fff;
+  border-bottom: 2px solid #291F1E;
+
+  /*Using grid displays simplifies setting divs side by side, any child elements will be set in a grid, so to speak*/
+  display: grid;
+  /*the first grid element in the html (in this case the .map)  will be twice as wide as the seond grid element (the sidebar)*/
+  /*the about me sections are the same as the info sections, with the small change of removing the first thumbnail image by setting the first column width to 0 here*/
+  grid-template-columns: 0fr 3fr 2fr;
+  /*the grid widths will automatically adjust to compensate for any gap created here*/
+  grid-gap: 20px;
+  /*the height here can be auto, dicated by child elements*/
+  height: auto;
+  
+}
+
 /*---------------------For small screens----------------------------------------------*/
 
 /*this small screen css needs to be at the bottom of the cascade bc the specificity of the declarations is the same as the declarations 
@@ -365,6 +389,10 @@ other CSS, it will be overwritten by the normal css for large screens, regardles
   .infosec-thumbnail, .infosec-image {
     display:none;
 
+}
+
+.about-us{
+  grid-template-columns: 0fr 3fr 1fr;
 }
 
 }
