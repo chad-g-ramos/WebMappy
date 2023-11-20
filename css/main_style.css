@@ -31,6 +31,7 @@ h3 {
   width: 100%;
   height: 4vh;
   box-shadow: 0 8px 8px #777;
+  margin-bottom: 12px;
  
   
  
@@ -234,7 +235,7 @@ body {
 
 .map {
   text-align: center;
-  background-color: #333;
+  /* background-color: #333; */
   font-size: 36px;
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
   height: 800px;
