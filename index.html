@@ -7,6 +7,7 @@
 
     <!--All Styling for this HTML document are contained in this external css file -->
     <link rel="stylesheet" type="text/css" href="css\main_style.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css"/>
 
     <!--external fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +28,7 @@
       margin: 0;
       padding: 0;
     }
-  
+
   /*  #layerList {
     /*  position: absolute;
       top:10px;
@@ -52,11 +53,11 @@
       require([
         "esri/Map",
         "esri/views/MapView",
-       "esri/widgets/LayerList",
-        "esri/layers/FeatureLayer",
+        "esri/layers/Layer",
+        "esri/widgets/LayerList"
       //  "dojo/domReady!"
-    ], (Map, MapView,FeatureLayer, LayerList) => {
-      var layer1 = new FeatureLayer({
+    ], (Map, MapView,Layer, LayerList) => {
+    /*  var layer1 = new FeatureLayer({
         portalItem: {
           id: "2f73c3d6690e439cacaf8a582e6dcf9c"
         },
@@ -70,14 +71,16 @@
         },
         layerId:1,
         title: "Ecoregions Level 4"
-      });
-    /*  const layer = new FeatureLayer({
+      });*/
+  /*    const layer = new FeatureLayer({
         // autocasts as new PortalItem()
-      /*  portalItem: {
+        portalItem: {
           id: "2f73c3d6690e439cacaf8a582e6dcf9c"
-        },
-        outFields: ["*"]
-      }); */
+        }
+      }).then(function(layer){
+        map.add(layer);
+      });*/
+
     /*  var layer1 = new FeatureLayer({
         url:"https://services1.arcgis.com/M68M8H7oABBFs1Pf/ArcGIS/rest/services/L3L4_Ecoregions_GEO5408/FeatureServer/0",
       });
@@ -89,7 +92,7 @@
       });*/
       var map = new Map({
         basemap: "gray-vector",
-        layers: [layer1,layer2]
+      //  layers: [layer1,layer2]
 
       });
       var view = new MapView({
@@ -99,8 +102,29 @@
         center: [-98, 30],
         popupEnabled: false,
       });
+      Layer.fromPortalItem({
+        portalItem: {
+          id: "2f73c3d6690e439cacaf8a582e6dcf9c"
+        },
+      }).then(function(layer){
+        map.add(layer);
+      });
 
-      view.when(()=>{
+      const layerList = new LayerList({
+        view:view,
+        listItemCreatedFunction: function(event) {
+          const item = event.item;
+          if (item.layer.type != "group"){
+            item.panel = {
+              content: "legend",
+              open:true
+            };
+          }
+        }
+      });
+      view.ui.add(layerList, "top-right");
+
+    /*  view.when(()=>{
         const layerList = new LayerList({
           view:view
         });
@@ -131,7 +155,7 @@
     //  map.addMany([layer1, layer2]);
 
       // Create a LayerList widget
-    /*  var layerList = new LayerList({
+    /* var layerList = new LayerList({
         view: view,
         listItemCreatedFunction: function (event) {
           // Customize the content of each layer list item
@@ -163,7 +187,7 @@
       });
 
       // Add the LayerList widget to the view
-      view.ui.add(layerList, "top-right");
+      view.ui.add(layerList, "top-right"); */
 
   /*    var layer1 = new FeatureLayer({
         url:"https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/L3L4_Ecoregions_GEO5408/FeatureServer/0",
