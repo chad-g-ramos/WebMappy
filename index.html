@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Texas Ecoregions</title>
-  
+
     <!--All Styling for this HTML document are contained in this external css file -->
     <link rel="stylesheet" type="text/css" href="css\main_style.css">
 
@@ -17,6 +17,210 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Comfortaa:wght@300;400;500&family=Montserrat+Alternates:wght@200;300;400&family=Sono:wght@400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
     <!------->
+    <script src="https://js.arcgis.com/4.28/"></script>
+    <style>
+    html,
+    body,
+    #viewDiv {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  
+  /*  #layerList {
+    /*  position: absolute;
+      top:10px;
+      left:10px;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display:flex;
+      flex-direction: column;
+    }
+    #layerList label{
+      margin-bottom: 5px;
+    } */
+    /*  background-color: white;
+      color: black;
+      padding: 6px;
+      max-width: 400px;
+    }*/
+
+    </style>
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+       "esri/widgets/LayerList",
+        "esri/layers/FeatureLayer",
+      //  "dojo/domReady!"
+    ], (Map, MapView,FeatureLayer, LayerList) => {
+      var layer1 = new FeatureLayer({
+        portalItem: {
+          id: "2f73c3d6690e439cacaf8a582e6dcf9c"
+        },
+        layerId: 0,
+        title: "Ecoregions Level 3"
+      });
+
+      var layer2 = new FeatureLayer({
+        portalItem: {
+          id: "2f73c3d6690e439cacaf8a582e6dcf9c"
+        },
+        layerId:1,
+        title: "Ecoregions Level 4"
+      });
+    /*  const layer = new FeatureLayer({
+        // autocasts as new PortalItem()
+      /*  portalItem: {
+          id: "2f73c3d6690e439cacaf8a582e6dcf9c"
+        },
+        outFields: ["*"]
+      }); */
+    /*  var layer1 = new FeatureLayer({
+        url:"https://services1.arcgis.com/M68M8H7oABBFs1Pf/ArcGIS/rest/services/L3L4_Ecoregions_GEO5408/FeatureServer/0",
+      });
+      map.add(layer1);
+
+    /*  var layer2 =S new FeatureLayer({
+        url:"https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/L3L4_Ecoregions_GEO5408/FeatureServer",
+        id:1,
+      });*/
+      var map = new Map({
+        basemap: "gray-vector",
+        layers: [layer1,layer2]
+
+      });
+      var view = new MapView({
+        container: "viewDiv",
+        map:map,
+        zoom:5,
+        center: [-98, 30],
+        popupEnabled: false,
+      });
+
+      view.when(()=>{
+        const layerList = new LayerList({
+          view:view
+        });
+        view.ui.add(layerList, "top-right");
+      });
+      /*  popup: {
+          dockEnabled: true,
+          dockOptions: {
+            // dock popup at bottom-right side of view
+            buttonEnabled: false,
+            breakpoint: false,
+            position: "bottom-right"
+          }
+        }*/
+        /*view.when(() => {
+          const layerList = new LayerList({
+            view: view
+          });
+
+          // Add widget to the top right corner of the view
+          view.ui.add(layerList, "top-right");
+        });
+      });*/
+
+
+
+      // Add the layers to the map
+    //  map.addMany([layer1, layer2]);
+
+      // Create a LayerList widget
+    /*  var layerList = new LayerList({
+        view: view,
+        listItemCreatedFunction: function (event) {
+          // Customize the content of each layer list item
+          var item = event.item;
+          item.panel = {
+            content: "legend",
+            open: true
+          });
+
+          // Handle click event to toggle layer visibility
+          item.actionsSections = [
+            [{
+              title: "Toggle Visibility",
+              className: "esri-icon-visibility",
+              id: "toggleVisibility"
+            }]
+          ];
+
+          item.on("trigger-action", function(event){
+            if (event.action.id === "toggleVisibility") {
+              if (item.title === "Ecoregions Level 3") {
+                layer1.visible = !layer1.visible;
+              } else if (item.title === "Ecoregions Level 4") {
+                layer2.visible = !layer2.visible;
+              }
+            }
+          });
+        }
+      });
+
+      // Add the LayerList widget to the view
+      view.ui.add(layerList, "top-right");
+
+  /*    var layer1 = new FeatureLayer({
+        url:"https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/L3L4_Ecoregions_GEO5408/FeatureServer/0",
+
+    //    title: "Level 3"
+      });
+      map.add(layer1);
+  /*    var layer2 = new FeatureLayer({
+        url:"https://services1.arcgis.com/M68M8H7oABBFs1Pf/arcgis/rest/services/L3L4_Ecoregions_GEO5408/FeatureServer",
+        id:0,
+        title:"Level 4"
+      });
+
+      map.addMany([layer1, layer2]);
+
+      var layerList = new LayerList({
+        view: view,
+        listItemCreatedFunction: function (event) {
+          var item = event.item;
+          item.panel = {
+            contnet: "legend",
+            open: true
+          };
+
+          item.on("trigger-action", function(){
+            if (item.title === "Level 3"){
+              layer1.visible = !layer1.visible;
+            } else if (item.title === "Level 4") {
+              layer2.visible = !layer2.visible;
+            }
+          });
+        }
+      });
+      view.ui.add("layerList", "top-right");
+
+    /*  document.getElementById("option1").addEventListenter("change", function() {
+        layer1.visible = this.checked;
+        layer2.visible = !this.checked;
+      });
+      document.getElementById("option2").addEventListenter("change", function() {
+        layer2.visible = this.checked;
+        layer1.visible = !this.checked;
+      }); */
+
+    //  view.ui.add("layerList", "top-right");
+
+
+
+    /*var layerList = new LayerList({
+       view: view,
+       container: "viewDiv"
+      });
+    view.ui.add(layerList, { positon:"top-right"});
+    view.ui.add("optionsDiv", "top-right");*/
+  });
+
+  </script>
 
 </head>
 <body>
@@ -29,7 +233,7 @@
     </section>
 
 
-    
+
     <!---------------------NAV BAR-------------------------------->
 
 
@@ -63,14 +267,14 @@
       </section> -->
 
 
-   
+
     <!-----------------------Map and Sidebar------------------------>
 
 
-      
+
       <div class="grid-container">
-        
-        
+
+
         <aside class="sidebar">
           <div id="learn-more">
           <h3 style="background-color:#000">Learn More</h3>
@@ -90,17 +294,26 @@
         </aside>
 
         <section class="map">
-          this is where we put the map          
+          <div id="viewDiv"></div>
+
+        <!--  <div id="layerList">
+            <label for ="option1">Level 3</label>
+            <input type="radio" id="option1" name="layerOption" checked>
+            <label for ="option2">Level 4</label>
+            <input type="radio" id="option2" name="layerOption">
+          </div> ------->
+
+
         </section>
-             
+
       </div>
-    
+
 
      <!-----------------------Section1----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_1">
-        
+
           <div class="inforsec-left-content">
             <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%" height="auto">
           </div>
@@ -112,15 +325,15 @@
           <div class="infosec-right-content>">
             <img class="infosec-image" src=images/pineywoods.jpg width="100%">
           </div>
-        
-        
+
+
       </section>
 
       <!-----------------------Section2----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_2">
-        
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
         </div>
@@ -131,15 +344,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/EdwardsPlateau2.jpg width="100%">
         </div>
-      
-      
+
+
       </section>
-      
+
       <!-----------------------Section3----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_3">
-        
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
         </div>
@@ -150,15 +363,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/pineywoods.jpg width="100%">
         </div>
-      
-      
+
+
       </section>
-    
+
      <!-----------------------Section4----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_4">
-          
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
         </div>
@@ -169,15 +382,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/pineywoods.jpg width="100%">
         </div>
-    
-    
+
+
       </section>
 
     <!-----------------------Section5----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_5">
-          
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%" height="auto">
         </div>
@@ -188,15 +401,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/pineywoods.jpg width="100%">
         </div>
-      
-      
+
+
       </section>
 
   <!-----------------------Section6----------------------------------->
 
 
     <section class="infosec-grid-container" id="L3_6">
-      
+
       <div class="inforsec-left-content">
         <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
       </div>
@@ -207,15 +420,15 @@
       <div class="infosec-right-content>">
         <img class="infosec-image" src=images/pineywoods.jpg width="100%">
       </div>
-    
-    
+
+
     </section>
-  
+
   <!-----------------------Section7----------------------------------->
 
 
     <section class="infosec-grid-container" id="L3_7">
-      
+
       <div class="inforsec-left-content">
         <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
       </div>
@@ -226,15 +439,15 @@
       <div class="infosec-right-content>">
         <img class="infosec-image" src=images/HighPlains.jpg width="100%">
       </div>
-  
-  
+
+
     </section>
 
  <!-----------------------Section8----------------------------------->
 
 
   <section class="infosec-grid-container" id="L3_8">
-      
+
     <div class="inforsec-left-content">
       <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
     </div>
@@ -253,7 +466,7 @@
 
 
   <section class="infosec-grid-container" id="L3_9">
-          
+
     <div class="inforsec-left-content">
       <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%" height="auto">
     </div>
@@ -335,6 +548,6 @@
 
 
       <!-----------------------End----------------------------------->
-    
+
 </body>
 </html>
