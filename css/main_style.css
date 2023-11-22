@@ -236,7 +236,7 @@ body {
 .map {
   /*text-align: center; */
   /* background-color: #333; */
- /*  font-size: 36px; */
+  /* font-size: 36px; */
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
   height: 800px;
 }
