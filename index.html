@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Texas Ecoregions</title>
-  
+
     <!--All Styling for this HTML document are contained in this external css file -->
     <link rel="stylesheet" type="text/css" href="css\main_style.css">
 
@@ -16,7 +16,57 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Comfortaa:wght@300;400;500&family=Montserrat+Alternates:wght@200;300;400&family=Sono:wght@400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+
+    <script src="https://js.arcgis.com/4.28/"></script>
     <!------->
+    <style>
+      html,
+      body,
+      #viewDiv {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+      //  "esri/widgets/LayerList",
+        "esri/layers/FeatureLayer",
+      //  "dojo/domReady!"
+    ], (Map, MapView, FeatureLayer) => {
+      var layer1 = new FeatureLayer({
+        portalItem: {
+          id: "2f73c3d6690e439cacaf8a582e6dcf9c"
+        },
+        layerId: 0,
+        title: "Ecoregions Level 3"
+      });
+
+      var layer2 = new FeatureLayer({
+        portalItem: {
+          id: "2f73c3d6690e439cacaf8a582e6dcf9c"
+        },
+        layerId:1,
+        title: "Ecoregions Level 4"
+      });
+      var map = new Map({
+        basemap: "gray-vector",
+        layers: [layer1,layer2]
+      });
+      var view = new MapView({
+        container: "viewDiv",
+        map:map,
+        zoom:5,
+        center: [-98, 30],
+        popupEnabled: false,
+      });
+      });
+
+  </script>
 
 </head>
 <body>
@@ -29,7 +79,7 @@
     </section>
 
 
-    
+
     <!---------------------NAV BAR-------------------------------->
 
 
@@ -63,14 +113,14 @@
       </section> -->
 
 
-   
+
     <!-----------------------Map and Sidebar------------------------>
 
 
-      
+
       <div class="grid-container">
-        
-        
+
+
         <aside class="sidebar">
           <div id="learn-more">
           <h3 style="background-color:#000">Learn More</h3>
@@ -90,17 +140,17 @@
         </aside>
 
         <section class="map">
-          this is where we put the map          
+          <div id="viewDiv"></div>
         </section>
-             
+
       </div>
-    
+
 
      <!-----------------------Section1----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_1">
-        
+
           <div class="inforsec-left-content">
             <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%" height="auto">
           </div>
@@ -112,15 +162,15 @@
           <div class="infosec-right-content>">
             <img class="infosec-image" src=images/pineywoods.jpg width="100%">
           </div>
-        
-        
+
+
       </section>
 
       <!-----------------------Section2----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_2">
-        
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
         </div>
@@ -131,15 +181,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/EdwardsPlateau2.jpg width="100%">
         </div>
-      
-      
+
+
       </section>
-      
+
       <!-----------------------Section3----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_3">
-        
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
         </div>
@@ -150,15 +200,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/pineywoods.jpg width="100%">
         </div>
-      
-      
+
+
       </section>
-    
+
      <!-----------------------Section4----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_4">
-          
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
         </div>
@@ -169,15 +219,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/pineywoods.jpg width="100%">
         </div>
-    
-    
+
+
       </section>
 
     <!-----------------------Section5----------------------------------->
 
 
       <section class="infosec-grid-container" id="L3_5">
-          
+
         <div class="inforsec-left-content">
           <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%" height="auto">
         </div>
@@ -188,15 +238,15 @@
         <div class="infosec-right-content>">
           <img class="infosec-image" src=images/pineywoods.jpg width="100%">
         </div>
-      
-      
+
+
       </section>
 
   <!-----------------------Section6----------------------------------->
 
 
     <section class="infosec-grid-container" id="L3_6">
-      
+
       <div class="inforsec-left-content">
         <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
       </div>
@@ -207,15 +257,15 @@
       <div class="infosec-right-content>">
         <img class="infosec-image" src=images/pineywoods.jpg width="100%">
       </div>
-    
-    
+
+
     </section>
-  
+
   <!-----------------------Section7----------------------------------->
 
 
     <section class="infosec-grid-container" id="L3_7">
-      
+
       <div class="inforsec-left-content">
         <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
       </div>
@@ -226,15 +276,15 @@
       <div class="infosec-right-content>">
         <img class="infosec-image" src=images/HighPlains.jpg width="100%">
       </div>
-  
-  
+
+
     </section>
 
  <!-----------------------Section8----------------------------------->
 
 
   <section class="infosec-grid-container" id="L3_8">
-      
+
     <div class="inforsec-left-content">
       <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%"">
     </div>
@@ -253,7 +303,7 @@
 
 
   <section class="infosec-grid-container" id="L3_9">
-          
+
     <div class="inforsec-left-content">
       <img class="infosec-thumbnail" src=images/thumbnail1.png width="100%" height="auto">
     </div>
@@ -335,6 +385,6 @@
 
 
       <!-----------------------End----------------------------------->
-    
+
 </body>
 </html>
