@@ -3,17 +3,22 @@ require([
     "esri/Graphic",
     "esri/views/MapView",
     "esri/layers/FeatureLayer",
-    "esri/widgets/Legend"
-  ], (Map, Graphic, MapView, FeatureLayer, Legend) => {
+    "esri/widgets/Legend",
+    "esri/widgets/Search",
+    "esri/widgets/Locate"
+  ], (Map, Graphic, MapView, FeatureLayer, Legend, Search, Locate) => {
     // Crime in SF
-    const layer = new FeatureLayer({
+    const layer = new FeatureLayer({      
       // autocasts as new PortalItem()
       portalItem: {
         // id: "2f73c3d6690e439cacaf8a582e6dcf9c"
-        id: "744540718ad94c64bfc7217c93e00e8b"
+        id: "110a082f1bb04e6392a58b000fdf0a9a"
+        
       },
       outFields: ["US_L4NAME", "DESC", "LINK"]
     });
+
+    
 
     const map = new Map({
       basemap: "gray-vector",
@@ -46,6 +51,26 @@ require([
         }
       ]
     });
+
+    const searchWidget = new Search({
+      view: view
+    });
+    // Adds the search widget below other elements in
+    // the top left corner of the view
+    view.ui.add(searchWidget, {
+      position: "bottom-left",
+      index: 2
+    });
+
+    let locateWidget = new Locate({
+      view: view,   // Attaches the Locate button to the view
+      graphic: new Graphic({
+        symbol: { type: "simple-marker" }  // overwrites the default symbol used for the
+        // graphic placed at the location of the user when found
+      })
+    });
+    
+    view.ui.add(locateWidget, "top-left");
 
     // view.ui.add(legend, "bottom-left");
     view.ui.add("optionsDiv", "top-right");
