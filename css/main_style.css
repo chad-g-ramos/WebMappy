@@ -34,7 +34,16 @@ h3 {
   margin-bottom: 12px;
 
 
+}
 
+.sticky {
+  position:fixed;
+  top: 0;
+  width: 100%
+}
+
+.sticky + .container {
+  padding-top:102px;
 }
 
 /* Style the links inside the navigation bar */
