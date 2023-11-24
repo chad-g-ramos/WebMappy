@@ -4,8 +4,9 @@
     "esri/views/MapView",
     "esri/layers/Layer",
     "esri/widgets/LayerList",
+    "esri/widgets/Search",
   //  "dojo/domReady!"
-], (Map, MapView, Layer, LayerList) => {
+], (Map, MapView, Layer, LayerList, Search) => {
   var map = new Map({
     basemap: "gray-vector",
   //  layers: [layer1,layer2]
@@ -19,6 +20,11 @@
     popupEnabled: false,
   });
 
+  //SearchWidget on Main Map
+var searchWidget = new Search({
+  view:view,
+  index: 2,
+});
 
   //I split the feature service into two distict services and added them separately
   //This is the only way I could get the l4 regions to default to "not visible" in the
@@ -64,4 +70,6 @@
   });
   view.ui.add(layerList, "top-right");
 
+  //position of the search widget in the main Map
+  view.ui.add(searchWidget, "top-left");
   });
