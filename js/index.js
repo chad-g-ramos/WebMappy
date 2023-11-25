@@ -5,8 +5,9 @@
     "esri/layers/Layer",
     "esri/widgets/LayerList",
     "esri/widgets/Search",
+    "esri/widgets/Locate",
   //  "dojo/domReady!"
-], (Map, MapView, Layer, LayerList, Search) => {
+], (Map, MapView, Layer, LayerList, Search, Locate) => {
   var map = new Map({
     basemap: "gray-vector",
   //  layers: [layer1,layer2]
@@ -23,7 +24,16 @@
   //SearchWidget on Main Map
   var searchWidget = new Search({
     view:view,
-    index: 2, 
+    index: 2,
+  });
+
+ //The locatewidget for the Main Map
+  var locateWidget = new Locate({
+    view:view,
+    graphic: new graphic({
+    symbol: { type: "simple-marker"}
+    })
+
   });
 
   //I split the feature service into two distict services and added them separately
@@ -73,4 +83,6 @@
   //position of the search widget in the main Map
   view.ui.add(searchWidget, "top-left");
 
+  //position of the locatewidget within the main map
+  view.ui.add(locateWidget, "bottom-left")
   });
