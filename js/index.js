@@ -5,9 +5,11 @@
     "esri/layers/Layer",
     "esri/widgets/LayerList",
     "esri/widgets/Search",
-    "esri/widgets/Locate",
+    "esri/Graphic",
+    "esri/symbols/SimpleMarkerSymbol",
+    "esri/geometry/Point",
   //  "dojo/domReady!"
-], (Map, MapView, Layer, LayerList, Search, Locate) => {
+], (Map, MapView, Layer, LayerList, Search, Graphic, SimpleMarkerSymbol, Point) => {
   var map = new Map({
     basemap: "gray-vector",
   //  layers: [layer1,layer2]
@@ -21,20 +23,39 @@
     popupEnabled: false,
   });
 
-  //SearchWidget on Main Map
-  var searchWidget = new Search({
-    view:view,
-    index: 2,
-  });
+  // Function to add a marker to the map
+  function addMarker(lat, long) {
+    var point = new Point({
+      longitude: long,
+      latitude: lat
+    });
 
- //The locatewidget for the Main Map
-  var locateWidget = new Locate({
-    view:view,
-    graphic: new graphic({
-    symbol: { type: "simple-marker"}
-    })
+    var simpleMarkerSymbol = new SimpleMarkerSymbol({
+      color: [226, 119, 40], // Orange color
+      outline: {
+        color: [255, 255, 255], // White outline
+        width: 2
+      }
+    });
 
-  });
+    var graphic = new Graphic({
+      geometry: point,
+      symbol: simpleMarkerSymbol
+    });
+
+    view.graphics.add(graphic);
+  }
+
+    // Check if geolocation is available
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            addMarker(position.coords.latitude, position.coords.longitude);
+        }, function(error) {
+            console.error("Error getting location: ", error);
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
 
   //I split the feature service into two distict services and added them separately
   //This is the only way I could get the l4 regions to default to "not visible" in the
@@ -83,6 +104,4 @@
   //position of the search widget in the main Map
   view.ui.add(searchWidget, "top-left");
 
-  //position of the locatewidget within the main map
-  view.ui.add(locateWidget, "bottom-left")
   });
