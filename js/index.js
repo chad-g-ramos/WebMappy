@@ -23,6 +23,12 @@
     popupEnabled: false,
   });
 
+  //SearchWidget on Main Map
+  var searchWidget = new Search({
+    view:view,
+    index: 2,
+  });
+
   // Function to add a marker to the map
   function addMarker(lat, long) {
     var point = new Point({
