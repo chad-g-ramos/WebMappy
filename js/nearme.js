@@ -104,22 +104,7 @@ require([
       }
     });
 
-    // // when query type changes, set appropriate values
-    // const queryOpts = document.getElementById("query-type");
-
-    // queryOpts.addEventListener("change", () => {
-    //   switch (queryOpts.value) {
-    //     // values set for distance query
-    //     case "distance":
-    //       distance = 15;
-    //       units = "miles";
-    //       break;
-    //     default:
-    //       // Default set to basic query
-    //       distance = null;
-    //       units = null;
-    //   }
-    // });
+    
 
     layer.load().then(() => {
       // Set the view extent to the data extent

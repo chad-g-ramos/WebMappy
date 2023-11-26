@@ -1,12 +1,4 @@
-/*colors
-#E8E5DA
-#1B512D
-#291F1E
-#477998
-#26A96C
 
-#04AA6D
-*/
 
 h3 {
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
@@ -17,19 +9,27 @@ h3 {
 
 
 /*-----------------------NAV BAR--------------------------------------------*/
+/* below are the properties for the navbar */
 
 
 
-/* Add a black background color to the top navigation */
+/* Styles for the navbar */
 .topnav {
+  /* background for the navbar is white */
   background-color: #fff;
+  /* overflow for the navbar is hidden, no scrolling as it shouldn't ever be neeed */
   overflow: hidden;
+  /* set the top margin to 0 so it is flush with the title div */
   margin-top: 0;
-  /* border-bottom: solid 3px #26A96C; */
+  /* Set font to our chosen font */
   font-family: 'Comfortaa';
+  /* align the text center in the div */
   text-align:center;
+  /* allow the navbar div to fill 100% of the available screen width.  This ensures that first the links will always be centered in the webpage */
   width: 100%;
+  /* set the height of the navbar to 4% of the viewport height, allowing this to be a dynamic height that will be responsive to mobile screens */
   height: 4vh;
+  /* add a box shadow and bottom padding purely for aesthetic reasons */
   box-shadow: 0 8px 8px #777;
   margin-bottom: 12px;
 
@@ -39,13 +39,15 @@ h3 {
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  /* float: left; removed this to center navbar links on page */
+  /* display is inline for navbar links as we want them side by side and not as blocks */
   display: inline;
   color: #999;
-  line-height: 4vh; /*set this to the same height as the topnav div height and then set the top and bottom margins the same to center the text vertically*/
+  /*set the line height to the same height as the topnav div height and then set the top and bottom margins/padding equal to each other to center the text vertically*/
+  line-height: 4vh; 
   padding: 2vh 2vw;
   text-decoration: none;
   font-size: 1em;
+  /* allow the font to inherit from the div, reduces repetition */
   font-family: inherit;
   text-align: center;
 
@@ -53,6 +55,7 @@ h3 {
 }
 
 /* Add an active class to highlight the current page */
+/* this class will be added to the correct link on each page to show the user which page they are on */
 a.active {
   color: #000;
   font-family: 'Montserrat Alternates'; /*Comfortaa'*/
@@ -60,13 +63,15 @@ a.active {
 
 }
 
-/* Add a dark background on topnav links and the dropdown button on hover */
+/* Add a dark background on topnav links and the dropdown button on hover (note, no drowdown used) */
 .topnav a:hover, .dropdown:hover .dropbtn {
   background-color: #555;
   color: white;
 }
 
 
+
+/* THE FOLLOWING STYLES WERE REMOVED BECAUSE WE DIDN'T END UP USING A DROPDOWN, THEY CAN BE ACTIVATED IF  NEEDED */
 
 
 /* Dropdown container - needed to position the dropdown content
@@ -123,23 +128,6 @@ a.active {
 
 
 
-/* #logo {
-  font-family: 'Montserrat Alternates'; /*Comfortaa'*/
-  /* font-weight: 400;
-  float: left;
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 34px 55px;
-  text-decoration: none;
-  font-size: 24px;
-  margin-top: 0;
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-   */
-/* } */
-
 
 
 /*---------------------BODY----------------------------------------------*/
@@ -152,13 +140,14 @@ body {
   /*setting all margins to 0 overrides browser defaults and allows the nav bar to be at the very top/sides*/
   margin: 0 0 0 0;
   width: 100%;
-  /*page will be intentionally overflowed so need to set the scroll*/
+  /*page will be intentionally overflowed so need to set the y-scroll*/
   overflow-y: scroll;
 }
 
 #container {
   /* setting this max width based on web desing best practices */
   max-width: 1000px;
+  /* setting the margin auto on this main container will center it in the window */
   margin: auto;
 
 }
@@ -191,9 +180,9 @@ body {
 
 
 .map-title {
+  /* setting the minimum height to ensure it is visible on all screens */
   min-height:10vh;
   background-color: #000;
-  /* background-color: #291F1E; */
   /* setting the diplay to flex box allows easy center and vertical alignment of child elements, but for the horizontal to work this div must be 100% width of the webapage (i.e. the main axis) */
   display: flex;
   /* this aligns child elements along the cross (vertical) axis */
@@ -234,21 +223,20 @@ body {
 
 
 .map {
-  /*text-align: center; */
-  /* background-color: #333; */
-  /* font-size: 36px; */
-  /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
+  /*setting the height for the map in pixels rather than a responsive vh ensures that the map aspect ratio will remain the same on all screens*/
   height: 800px;
 }
 
 .sidebar{
   text-align: center;
-  /* background-color: #666; */
-  /* font-size: 36px; */
-  /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
+  /*setting the height for the map and sidebar in pixels rather than a reponsive vh ensures taht the map aspect ration will be the same on all screens and more importantly it ensures that the user will be able to scroll past the map on a mobile device
+  if the map takes up 100% of the vh, then the mobile user cannot scroll to the content below, they will simply change the map view.  Modern mobile devices all have more than 800px of height */
   max-height: 800px;
+  /* using css flex here to center the sidbar pill links vertically within the sidebar, evenly spaced */
   display: flex;
+    /* setting flex direction to columns stacks the sidebar links vertically in the div */
     flex-direction: column;
+    /* setting the justify to "space between" places equal space between each link to center them vertically */
     justify-content: space-between;
   
 
@@ -279,6 +267,7 @@ body {
 }
 
 .sidebar-pill:hover {
+  /* setting the hover to display slighlty differently to tell user that it is a link */
   text-decoration: underline;
 }
 
@@ -287,6 +276,7 @@ body {
 
 
 .infosec-grid-container{
+  /* the "container" div is used to set the max width of the website, this div is a first child of the "container div" and needs to be 100% of the available width */
   width: 100% ;
   padding: 40px 0 40px 0;
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
@@ -320,6 +310,7 @@ body {
 
 
 .infosec-thumbnail, .infosec-image {
+  /* setting the images to be 90 of their available column with to add some blank space to their sides for aesthetics */
   max-width:90%;
   height:auto;
 
@@ -375,7 +366,7 @@ other CSS, it will be overwritten by the normal css for large screens, regardles
   .map {
     /* set the column order of the map, which is now display flex column, to position 1 above the sidebar */
     order:1;
-    /* change map height less than screen height*/
+    /* change map height less than mobile screen height to make sure mobile user can scoll below the map rather than getting stuck on the map*/
     height: 500px;
   }
 

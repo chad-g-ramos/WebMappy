@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Texas Ecoregions</title>
 
-    <!--All Styling for this HTML document are contained in this external css file -->
+    <!--internal and external css styling -->
     <link rel="stylesheet" type="text/css" href="css\main_style.css">
     <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css"/>
 
@@ -19,9 +19,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Comfortaa:wght@300;400;500&family=Montserrat+Alternates:wght@200;300;400&family=Sono:wght@400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
 
+    <!--internal and external javascript-->
     <script src="https://js.arcgis.com/4.28/"></script>
     <script src="js/index.js"></script>
-    <!------->
+
+
+    <!---very simple styling for viewdiv, kept inside html to avoid creating multiple identificaitons for "viewDiv" on separate pages (i.e. the nearme page also has a "viewDiv"---->
     <style>
       html,
       body,
@@ -33,9 +36,14 @@
       }
     </style>
 </head>
+
+
+
+
 <body>
 
      <!-----------------------Map Title----------------------------------->
+     <!-- simple section to hold the title image -->
 
 
     <section class="map-title">
@@ -45,29 +53,21 @@
 
 
     <!---------------------NAV BAR-------------------------------->
+    <!-- a div for the nav bar and links -->
 
 
     <div class="topnav" id="myTopnav">
         <a href="https://pages.git.txstate.edu/Web-Mappy/Web-Mappy.github.io/index.html" class="active">Web Mappy</a>
         <a href="https://pages.git.txstate.edu/Web-Mappy/Web-Mappy.github.io/nearme.html">Near Me</a>
         <a href="https://pages.git.txstate.edu/Web-Mappy/Web-Mappy.github.io/aboutus.html">About Us</a>
-        <!-- <div class="dropdown">
-          <button class="dropbtn">About Us
-            <i class="fa fa-caret-down"></i>
-          </button>
-         <div class="dropdown-content">
-            <a href="https://pages.git.txstate.edu/cgr50/cgr50.github.io/" target="_blank">Chad Ramos</a>
-            <a href="https://pages.git.txstate.edu/hgx4/hgx4.github.io/" target="_blank">Brodde Kjosa</a>
-            <a href="https://pages.git.txstate.edu/bek47/bek47.github.io/" target="_blank">Jasmine Marroquin</a>
-         </div>
-        </div> -->
     </div>
 
 
 
     <!---------------------Main Content-------------------------------->
+    <!--This container holds everything but the nav bar, is used to set the max width of the webpage-->
 
-    <div id="container"> <!--This container holds everything but the nav bar-->
+    <div id="container"> 
 
     <!-----------------------Intro----------------------------------->
 
@@ -81,10 +81,11 @@
     <!-----------------------Map and Sidebar------------------------>
 
 
+      <!--the grid gontainer is used in a css grid display to set the psuedo legend to the left of the map container-->
+      <div class="grid-container"> 
 
-      <div class="grid-container">
-
-
+        <!-- this is the aside for the psuedo legend, the "learn more" div simply holds the title for the sidebar, the links are specified as "sidebar pill" for use in CSS
+        and the colors for each pill button are set here rather than css because it is simpler. These hex codes match the corresponding hex codes in the map -->
         <aside class="sidebar">
           <div id="learn-more">
           <h3 style="background-color:#000">Learn More</h3>
@@ -103,6 +104,8 @@
           <a href="#L3_12" class="sidebar-pill" style="background-color:#C3D9C7">South Central Plains</a>
         </aside>
 
+
+        <!-- this section holds the viewDiv map container -->
         <section class="map">
           <div id="viewDiv"></div>
         </section>
@@ -110,19 +113,30 @@
       </div>
 
 
+    <!-----------------------Information Sections----------------------------------->
+    <!-- These sections contain the descriptions and media for level 3 ecoregions. Each contains a grid container stylized in css using the grid display to 
+    create 3 adjacent divs. The left div contains a map thumbnail for each region, the middle div contains the text, and the right div contains 
+    a picture from within the region -->
+
      <!-----------------------Section1----------------------------------->
+    
 
-
+      <!-- section class set to stylize in css, id set to link from the psuedo legend sidebar pills above -->
       <section class="infosec-grid-container" id="L3_1">
 
+          <!-- this div will become the left div for each section and contains a thumbnail image of a map of the section -->
           <div class="inforsec-left-content">
             <img class="infosec-thumbnail" src=images/SouthernTexasPlains.png width="100%" height="auto">
           </div>
+
+          <!-- this div contains the text description of the region and will be the middle column in the grid display -->
           <div class="infosec-main-content">
             <h3>Southern Texas Plains</h3>
             <br>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et hendrerit quam, dignissim convallis lorem. Phasellus congue mollis elit, a vulputate ex ornare in. Aenean vulputate dignissim lobortis. Phasellus pharetra est arcu, lobortis euismod diam tempus non. Vivamus felis augue, rutrum ac arcu non, maximus auctor lorem. Nullam sed mattis mauris. Sed lobortis, leo in tristique suscipit, diam nulla semper ex, quis laoreet elit tellus vel turpis. Nulla sapien diam, ullamcorper ac porttitor a, dapibus pulvinar lorem. Cras tincidunt ligula tincidunt lorem sagittis, sit amet volutpat leo venenatis. Praesent fermentum ipsum quis nibh blandit maximus. Donec porttitor, lacus quis lacinia malesuada, odio leo semper ante, non dignissim tortor tortor ut quam. Curabitur augue lorem, blandit quis tincidunt vitae, dapibus non dolor. Cras et eros vel urna ornare lacinia. Vivamus nec suscipit arcu. Aliquam purus massa, sodales eu molestie non, volutpat convallis erat. Nullam volutpat, urna ac dapibus aliquam, justo lorem ornare felis, ut auctor ligula sem nec ipsum.
           </div>
+
+          <!-- this content will be the right content of the grid display, and contains an image from within the region -->
           <div class="infosec-right-content>">
             <img class="infosec-image" src=images/SouthTexasPlains3.jpg width="100%">
           </div>
