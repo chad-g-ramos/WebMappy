@@ -15,7 +15,7 @@
     <!--All Styling for this HTML document are contained in this external css file -->
     <!-- <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css"/> -->
     <link rel="stylesheet" type="text/css" href="css\main_style.css">
-    
+
 
     <!--external fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,12 +194,12 @@
     <section class="map-title">
         <div id="map-title-subdiv"><img src=images/title2.png  width="100%"></div>
       </section>
-  
-  
-      
+
+
+
       <!---------------------NAV BAR-------------------------------->
-  
-  
+
+
       <div class="topnav" id="myTopnav">
           <a href="https://pages.git.txstate.edu/Web-Mappy/Web-Mappy.github.io/index.html" >Web Mappy</a>
           <a href="https://pages.git.txstate.edu/Web-Mappy/Web-Mappy.github.io/nearme.html" class="active">Near Me</a>
@@ -221,10 +221,10 @@
 
 
 
-        
+
         <div class="grid-container">
-        
-        
+
+
             <aside class="sidebar" id="sidebar">
               <div id="learn-more">
               <h3 style="background-color:#000">Legend</h3>
@@ -240,24 +240,27 @@
                 </select>
               </div>
             </aside>
-    
+
             <section class="map">
-                <div id="viewDiv"></div>          
+                <div id="viewDiv"></div>
             </section>
-                 
+
           </div>
-
-
-
-
-
-
-    
-    
-
-
-
     </div>
-    
+    <footer>
+      <div id="copyright">
+    <script>
+    //copyright outside of the main div causes it not to interfere with the webmap reviews elemnts
+    //Variable today assigned the value of new date. Date() generates current date and time.
+    var today = new Date();
+    //Variable year assigned the value of today.getFullYear(). Uses the current date to generate the year.
+    var year = today.getFullYear();
+    //Prints Copywrite along with the copyright symbol and the value of the year variable.
+    document.writeln(' &copy;' + year + "Web Mappy");
+    </script>
+  </div>
+    </footer>
+
+
   </body>
 </html>
