@@ -5,8 +5,11 @@
     "esri/layers/Layer",
     "esri/widgets/LayerList",
     "esri/widgets/Search",
+    "esri/Graphic",
+    "esri/symbols/SimpleMarkerSymbol",
+    "esri/geometry/Point",
   //  "dojo/domReady!"
-], (Map, MapView, Layer, LayerList, Search) => {
+], (Map, MapView, Layer, LayerList, Search, Graphic, SimpleMarkerSymbol, Point) => {
   var map = new Map({
     basemap: "gray-vector",
   //  layers: [layer1,layer2]
@@ -25,6 +28,40 @@ var searchWidget = new Search({
   view:view,
   index: 2,
 });
+
+// Function to add a marker to the map
+function addMarker(lat, long) {
+  var point = new Point({
+    longitude: long,
+    latitude: lat
+  });
+
+  var simpleMarkerSymbol = new SimpleMarkerSymbol({
+    color: [106, 13, 173], 
+    outline: {
+      color: [255, 255, 255],
+      width: 2
+    }
+  });
+
+  var graphic = new Graphic({
+    geometry: point,
+    symbol: simpleMarkerSymbol
+  });
+
+  view.graphics.add(graphic);
+}
+
+  // CThis function checks the geolocation of the user and shows whether or not the locate is available for the user.
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+          addMarker(position.coords.latitude, position.coords.longitude);
+      }, function(error) {
+          console.error("Error getting location: ", error);
+      });
+  } else {
+      console.log("Geolocation is not supported by this browser.");
+  }
 
   //I split the feature service into two distict services and added them separately
   //This is the only way I could get the l4 regions to default to "not visible" in the
