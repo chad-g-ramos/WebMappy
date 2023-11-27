@@ -400,9 +400,9 @@ other CSS, it will be overwritten by the normal css for large screens, regardles
 
 
 footer {
-  /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
+
   text-align: center;
   min-height: 3vh;
   font-size: 14px;
-  border-top:#04AA6D solid 3px;
+  /* border-top:#04AA6D solid 3px; */
 }
