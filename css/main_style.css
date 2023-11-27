@@ -43,7 +43,7 @@ h3 {
   display: inline;
   color: #999;
   /*set the line height to the same height as the topnav div height and then set the top and bottom margins/padding equal to each other to center the text vertically*/
-  line-height: 4vh; 
+  line-height: 4vh;
   padding: 2vh 2vw;
   text-decoration: none;
   font-size: 1em;
@@ -238,7 +238,7 @@ body {
     flex-direction: column;
     /* setting the justify to "space between" places equal space between each link to center them vertically */
     justify-content: space-between;
-  
+
 
 }
 
@@ -401,7 +401,8 @@ other CSS, it will be overwritten by the normal css for large screens, regardles
 
 footer {
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
-  min-height: 5vh;
-  font-size: 36px;
+  text-align: center;
+  min-height: 3vh;
+  font-size: 14px;
   border-top:#04AA6D solid 3px;
 }

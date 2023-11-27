@@ -67,7 +67,7 @@
     <!---------------------Main Content-------------------------------->
     <!--This container holds everything but the nav bar, is used to set the max width of the webpage-->
 
-    <div id="container"> 
+    <div id="container">
 
     <!-----------------------Intro----------------------------------->
 
@@ -82,7 +82,7 @@
 
 
       <!--the grid gontainer is used in a css grid display to set the psuedo legend to the left of the map container-->
-      <div class="grid-container"> 
+      <div class="grid-container">
 
         <!-- this is the aside for the psuedo legend, the "learn more" div simply holds the title for the sidebar, the links are specified as "sidebar pill" for use in CSS
         and the colors for each pill button are set here rather than css because it is simpler. These hex codes match the corresponding hex codes in the map -->
@@ -114,12 +114,12 @@
 
 
     <!-----------------------Information Sections----------------------------------->
-    <!-- These sections contain the descriptions and media for level 3 ecoregions. Each contains a grid container stylized in css using the grid display to 
-    create 3 adjacent divs. The left div contains a map thumbnail for each region, the middle div contains the text, and the right div contains 
+    <!-- These sections contain the descriptions and media for level 3 ecoregions. Each contains a grid container stylized in css using the grid display to
+    create 3 adjacent divs. The left div contains a map thumbnail for each region, the middle div contains the text, and the right div contains
     a picture from within the region -->
 
      <!-----------------------Section1----------------------------------->
-    
+
 
       <!-- section class set to stylize in css, id set to link from the psuedo legend sidebar pills above -->
       <section class="infosec-grid-container" id="L3_1">
@@ -356,7 +356,7 @@
     <div class="infosec-main-content">
       <h3>South Central Plains</h3>
       <br>
-      The South Central Plains, a region of rolling landscapes and meandering river valleys, create a tapestry of grasslands and woodlands. This varied terrain provides a habitat for a diverse array of plant and animal life adapted to the ever-changing contours of the landscape. From the resilient prairie grasses to the majestic white-tailed deer, the South Central Plains encapsulate the essence of Texas's natural beauty. Trails wind through this picturesque region, inviting exploration into the heart of a landscape where the rhythms of nature unfold in harmony with the undulating hills and the flowing rivers. 
+      The South Central Plains, a region of rolling landscapes and meandering river valleys, create a tapestry of grasslands and woodlands. This varied terrain provides a habitat for a diverse array of plant and animal life adapted to the ever-changing contours of the landscape. From the resilient prairie grasses to the majestic white-tailed deer, the South Central Plains encapsulate the essence of Texas's natural beauty. Trails wind through this picturesque region, inviting exploration into the heart of a landscape where the rhythms of nature unfold in harmony with the undulating hills and the flowing rivers.
 
 
 
@@ -374,7 +374,16 @@
     <!-- this is the end div for the main container  -->
     </div>
       <footer>
-        some text here
+        <div id="copyright">
+          <script>
+            //Variable today assigned the value of new date. Date() generates current date and time.
+            var today = new Date();
+            //Variable year assigned the value of today.getFullYear(). Uses the current date to generate the year.
+            var year = today.getFullYear();
+            //Prints Copywrite along with the copyright symbol and the value of the year variable.
+            document.writeln(' &copy;' + year + "Web Mappy");
+          </script>
+        </div>
       </footer>
 
 
