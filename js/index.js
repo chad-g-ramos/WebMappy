@@ -108,5 +108,5 @@ function addMarker(lat, long) {
   view.ui.add(layerList, "top-right");
 
   //position of the search widget in the main Map
-  view.ui.add(searchWidget, "top-left");
+  view.ui.add(searchWidget, "top-right");
   });

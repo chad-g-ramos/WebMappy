@@ -1,3 +1,4 @@
+// load the necessary runctions
 require([
     "esri/Map",
     "esri/Graphic",
@@ -7,7 +8,10 @@ require([
     "esri/widgets/Search",
     "esri/widgets/Locate"
   ], (Map, Graphic, MapView, FeatureLayer, Legend, Search, Locate) => {
-    // Crime in SF
+
+
+    // Create a new FeatureLayer instance, assign to "layer" variable, 
+    // Add layer by Arcgis Online layer id, which we published specifically for this project
     const layer = new FeatureLayer({      
       // autocasts as new PortalItem()
       portalItem: {
@@ -19,12 +23,17 @@ require([
     });
 
     
-
+    //crate a new map instance, assign to "map" variable
+    //use the gray-vector basemap
     const map = new Map({
       basemap: "gray-vector",
       layers: [layer]
     });
 
+
+    //create a new view instance to display the map and other functionality
+    //bind it to the "viewDiv" container, set the center to san marcos, the zoom level to 5, and 
+    //dock the popup window to the bottom right of the view
     const view = new MapView({
       container: "viewDiv",
       map: map,
@@ -42,6 +51,9 @@ require([
       }
     });
 
+
+    //create a legend instance, assign its content from the view which we called "view" and the layer we called "layer"
+    // and bind it to the container called "sidebar" which is an aside div and not the same container as the map view. 
     const legend = new Legend({
       view: view,
       container: "sidebar",
@@ -52,16 +64,21 @@ require([
       ]
     });
 
+
+    //create an instance of the search widget, assign it to the "view", and place it at the bottom left of the view
+    //note that the searchbar will be placed below the zoom controls if the position is left as default top-left, which
+    //looks very bad, to compromise we moved it to the bottom left. 
     const searchWidget = new Search({
       view: view
     });
     // Adds the search widget below other elements in
-    // the top left corner of the view
     view.ui.add(searchWidget, {
       position: "bottom-left",
       index: 2
     });
 
+
+    //create an instance of the locate widget, assign it to the view, and create a new graphic for the button to be displayed
     let locateWidget = new Locate({
       view: view,   // Attaches the Locate button to the view
       graphic: new Graphic({
@@ -69,12 +86,15 @@ require([
         // graphic placed at the location of the user when found
       })
     });
-    
+    //add the locate widget to the view in the top left position, which will be below the zoom controls. 
     view.ui.add(locateWidget, "top-left");
 
-    // view.ui.add(legend, "bottom-left");
+
+    //note that the "optionsDiv" is a relic from the sample code from which this page is adapted from.  Its only function now
+    //is to hold a line of h3 text explaining how to use the near me app. 
     view.ui.add("optionsDiv", "top-right");
 
+    //this too is a relic from the sample code, the distance and units are initially set to null, and changed below
     // additional query fields initially set to null for basic query
     let distance = null;
     let units = null;
@@ -105,13 +125,18 @@ require([
     });
 
     
-
+    //after the layer loads, set the view extent to the full extent of the layer, and create the popup template
+    //neither of which can be done until the layer loads
     layer.load().then(() => {
       // Set the view extent to the data extent
       view.extent = layer.fullExtent;
       layer.popupTemplate = layer.createPopupTemplate();
     });
 
+
+    //add an event listener for the user input, which is a click somewhere on the view
+    //remove any existing graphics on the view from previous click queries
+    //using the click event as the input, run the queryFeatures function on the layer
     view.on("click", (event) => {
       view.graphics.remove(pointGraphic);
       if (view.graphics.includes(bufferGraphic)) {
@@ -120,19 +145,27 @@ require([
       queryFeatures(event);
     });
 
+
+    //build teh queryFeatures function, with the event click as the input
     function queryFeatures(screenPoint) {
       const point = view.toMap(screenPoint);
       layer
         .queryFeatures({
+          //the geometry from the click is set to a point
           geometry: point,
-          // distance and units will be null if basic query selected
+          // buffer the point by 15 miles, and use this buffer area as the query input
           distance: 15,
           units: "miles",
+          //specify the spatial relationship as intersects
           spatialRelationship: "intersects",
           returnGeometry: false,
           returnQueryGeometry: true,
+          //set the fields to be returned by the query
+          //NOTE THAT THIS DOES NOT WORK, ALL FIELDS ARE RETURNED REGARDLESS OF THIS LINE.
+          //WE HAD TO REMOVE FIELDS FROM THE SHAPEFILE AND REPUBLISH THE FEATURE SERVICE TO LIMIT THE DISPLAYED FIELDS 
           outFields: ["US_L4NAME","Desc_","LINK"]
         })
+        //pass the returned featureSet from the queryFeatures function to the openPopup() function as the features to be returned by the popup. 
         .then((featureSet) => {
           // set graphic location to mouse pointer and add to mapview
           pointGraphic.geometry = point;
@@ -143,6 +176,7 @@ require([
             features: featureSet.features,
             featureMenuOpen: true
           });
+          //add the buffer graphic to the display
           if (featureSet.queryGeometry) {
             bufferGraphic.geometry = featureSet.queryGeometry;
             view.graphics.add(bufferGraphic);
