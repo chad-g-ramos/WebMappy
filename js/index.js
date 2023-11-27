@@ -1,4 +1,4 @@
-
+  //loads necessary functions 
   require([
     "esri/Map",
     "esri/views/MapView",
@@ -37,7 +37,7 @@ function addMarker(lat, long) {
   });
 
   var simpleMarkerSymbol = new SimpleMarkerSymbol({
-    color: [106, 13, 173], 
+    color: [106, 13, 173],
     outline: {
       color: [255, 255, 255],
       width: 2
@@ -63,36 +63,35 @@ function addMarker(lat, long) {
       console.log("Geolocation is not supported by this browser.");
   }
 
-  //I split the feature service into two distict services and added them separately
-  //This is the only way I could get the l4 regions to default to "not visible" in the
-  //layer selector visibility toggle, which is controlled by the layer.visible=false
-  //statement below in the second layer.fromPortalItem code block
-  //-chad
+  //L3 layer created from a Portal layer item id
   Layer.fromPortalItem({
+    // autocasts as new PortalItem()
     portalItem: {
       // id: "2f73c3d6690e439cacaf8a582e6dcf9c"
       // id: "744540718ad94c64bfc7217c93e00e8b"
       id: "68e00b62a12f4dd9a259b41d230bc026"
     },
-
   }).then(function(layer){
+    //adds layer to map
     map.add(layer);
   });
 
+  //L4 layer created from a Portal layer item id
   Layer.fromPortalItem({
+    // autocasts as new PortalItem()
     portalItem: {
       // id: "2f73c3d6690e439cacaf8a582e6dcf9c"
       // id: "744540718ad94c64bfc7217c93e00e8b"
       id: "110a082f1bb04e6392a58b000fdf0a9a"
     },
-
   }).then(function(layer){
+    //adds layer to map
     map.add(layer);
-    layer.visible=false;
+    layer.visible=false; //defaults the L4 regions to not visible
   });
 
 
-
+  //create an instance of the layer list widget, added to view, closed legend added to panel
   const layerList = new LayerList({
     view:view,
     listItemCreatedFunction: function(event) {
@@ -105,6 +104,7 @@ function addMarker(lat, long) {
       }
     }
   });
+  //position of the layer list widget on main map
   view.ui.add(layerList, "top-right");
 
   //position of the search widget in the main Map
