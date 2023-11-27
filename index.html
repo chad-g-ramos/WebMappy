@@ -50,6 +50,20 @@
     }*/
 
     </style>
+    <script>
+    window.onscroll = function() {myFunction()};
+
+    var topnav = document.getElementById("myTopnav");
+    var sticky = topnav.offsetTop;
+
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        topnav.classList.add("sticky");
+      } else {
+        topnav.classList.remove("sticky");
+      }
+    }
+    </script>
   <!---  <script>
       require([
         "esri/Map",
@@ -568,7 +582,17 @@
     <!-- this is the end div for the main container  -->
     </div>
       <footer>
-        some text here
+        <div id="copyright">
+      <script>
+      //copyright outside of the main div causes it not to interfere with the webmap reviews elemnts
+      //Variable today assigned the value of new date. Date() generates current date and time.
+      var today = new Date();
+      //Variable year assigned the value of today.getFullYear(). Uses the current date to generate the year.
+      var year = today.getFullYear();
+      //Prints Copywrite along with the copyright symbol and the value of the year variable.
+      document.writeln(' &copy;' + year + "Web Mappy");
+      </script>
+    </div>
       </footer>
 
 

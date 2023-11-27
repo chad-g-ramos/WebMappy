@@ -37,13 +37,13 @@ h3 {
 }
 
 .sticky {
-  position:fixed;
+  position: fixed;
   top: 0;
-  width: 100%
+  width: 100%;
 }
 
 .sticky + .container {
-  padding-top:102px;
+  padding-top: 102px;
 }
 
 /* Style the links inside the navigation bar */
@@ -430,7 +430,8 @@ other CSS, it will be overwritten by the normal css for large screens, regardles
 
 footer {
   /*setting the heights for the map title, map/sidebar, and footer so that together they add to 100% vh*/
+  text-align: center;
   min-height: 5vh;
-  font-size: 36px;
+  font-size: 18px;
   border-top:#04AA6D solid 3px;
 }
