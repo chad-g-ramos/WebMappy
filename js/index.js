@@ -10,9 +10,13 @@
     "esri/geometry/Point",
   //  "dojo/domReady!"
 ], (Map, MapView, FeatureLayer, LayerList, Search, Graphic, SimpleMarkerSymbol, Point) => {
+  //crate a new map instance, assign to "map" variable
+  //use the gray-vector basemap
   var map = new Map({
     basemap: "gray-vector",
   });
+  //create a new view instance to display the map
+  //bind it to the "viewDiv" container, set the center to san marcos, the zoom level to 5,
   var view = new MapView({
     container: "viewDiv",
     map:map,
