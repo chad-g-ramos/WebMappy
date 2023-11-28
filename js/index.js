@@ -20,13 +20,13 @@
     map:map,
     zoom:5,
     center: [-98, 30],
-    popup: {
-        dockEnabled: true,
+  /*  popup: {
+        dockEnabled: false,
         dockOptions: {
           buttonEnabled: false,
           breakpoint: false,
         }
-      }
+      }*/
   });
 
   //SearchWidget on Main Map
