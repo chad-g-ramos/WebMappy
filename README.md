@@ -23,6 +23,6 @@ The user has the possibility to control the visualization output from a simple c
 
 Contributions: Chad Ramos, Jasmine Marroquin, Brodde Kjosa, Madelyn Flores 
 
-Special Thanks to: Dr. Yihong, Pingping, & Esri API
+Special Thanks to: Dr. Yuan, Pingping, & Esri API
 
 ![tumblr_ba016320e1cb550ace74be16f82a2bd9_9bc0e9a1_500](https://media.git.txstate.edu/user/3392/files/89841de7-94d3-4438-964f-ad03ffee3074)
