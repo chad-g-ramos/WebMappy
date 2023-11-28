@@ -73,7 +73,7 @@
       // id: "744540718ad94c64bfc7217c93e00e8b"
       id: "68e00b62a12f4dd9a259b41d230bc026",
     },
-  //  outFields:["Description"],
+      outFields:["DESC"],
     //popupTemplate: template
   //  popupTemplate: popupDesc,
 
