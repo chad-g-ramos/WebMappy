@@ -12,8 +12,6 @@
 ], (Map, MapView, FeatureLayer, LayerList, Search, Graphic, SimpleMarkerSymbol, Point) => {
   var map = new Map({
     basemap: "gray-vector",
-  //  layers: [layer1,layer2]
-
   });
   var view = new MapView({
     container: "viewDiv",
@@ -61,7 +59,7 @@ function addMarker(lat, long) {
   } else {
       console.log("Geolocation is not supported by this browser.");
   }
-
+//feature layer instance created for level 3 ecoregions as variable "layerL3"
   const layerL3 = new FeatureLayer({
     portalItem: {
       // id: "2f73c3d6690e439cacaf8a582e6dcf9c"
@@ -69,9 +67,11 @@ function addMarker(lat, long) {
       id: "68e00b62a12f4dd9a259b41d230bc026",
     },
       outFields:["*"],
+      //autocasts as new PopupTemplate()
       popupTemplate: {
         title: "{US_L3NAME}",
         outFields:["*"],
+        // Set the fieldInfos at the PopupTemplate level so all the popup elements have the desired field formatting.
         fieldInfos: [
           {
             fieldName: "OBJECTID",
@@ -116,6 +116,7 @@ function addMarker(lat, long) {
           },
 
         ],
+        // Set content elements in the order to display.
         content: [
           {
             type:"text",
@@ -128,8 +129,10 @@ function addMarker(lat, long) {
         ]
       }
 });
+  //layerL3 added to map
   map.add(layerL3);
 
+//feature layer instance created for level 4 ecoregions as variable "layerL4"
 const layerL4 = new FeatureLayer({
   portalItem: {
     // id: "2f73c3d6690e439cacaf8a582e6dcf9c"
@@ -137,6 +140,7 @@ const layerL4 = new FeatureLayer({
     id: "110a082f1bb04e6392a58b000fdf0a9a",
   }
 });
+//layerL4 added to map with visibility assigned as false to have only layerL3 to display on open
   map.add(layerL4);
   layerL4.visible=false;
 
