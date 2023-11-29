@@ -8,8 +8,9 @@
     "esri/Graphic",
     "esri/symbols/SimpleMarkerSymbol",
     "esri/geometry/Point",
+    "esri/widgets/ScaleBar",
   //  "dojo/domReady!"
-], (Map, MapView, FeatureLayer, LayerList, Search, Graphic, SimpleMarkerSymbol, Point) => {
+], (Map, MapView, FeatureLayer, LayerList, Search, Graphic, SimpleMarkerSymbol, Point, ScaleBar) => {
   //crate a new map instance, assign to "map" variable
   //use the gray-vector basemap
   var map = new Map({
@@ -136,6 +137,12 @@ function addMarker(lat, long) {
   //layerL3 added to map
   map.add(layerL3);
 
+// A scale bar to the Main Map
+  var  scaleBar = new ScaleBar({
+  view: view
+});
+
+
 //feature layer instance created for level 4 ecoregions as variable "layerL4"
 const layerL4 = new FeatureLayer({
   portalItem: {
@@ -166,4 +173,9 @@ const layerL4 = new FeatureLayer({
 
   //position of the search widget in the main Map
   view.ui.add(searchWidget, "top-right");
+
+  // Added a scale bar to the Main Map for measurment if needed
+  view.ui.add(scaleBar, {
+    position: "bottom-left"
+  });
   });
