@@ -149,7 +149,69 @@ const layerL4 = new FeatureLayer({
     // id: "2f73c3d6690e439cacaf8a582e6dcf9c"
     // id: "744540718ad94c64bfc7217c93e00e8b"
     id: "110a082f1bb04e6392a58b000fdf0a9a",
-  }
+  },
+    outFields:["*"],
+    //autocasts as new PopupTemplate()
+    popupTemplate: {
+      title: "{US_L4NAME}",
+      outFields:["*"],
+      // Set the fieldInfos at the PopupTemplate level so all the popup elements have the desired field formatting.
+      fieldInfos: [
+        {
+          fieldName: "OBJECTID",
+          label: "OBJECTID",
+          visible: false
+        },
+        {
+          fieldName: "US_L4NAME",
+          label: "US_L3NAME",
+          visible: true
+        },
+        {
+          fieldName: "Desc_",
+          label: "Desc",
+          visible: true,
+        },
+        {
+          fieldName: "LINK",
+          label: "Link",
+          visible: false,
+
+        },
+        {
+          fieldName: "Shape_Area",
+
+          label: "Area",
+          visible: false,
+          format: {
+              places: 2,
+                digitSeparator: true
+              }
+        },
+        {
+          fieldName: "Shape_Length",
+
+          label: "Length",
+          visible: false,
+          format: {
+                places: 2,
+                digitSeparator: true
+              }
+        },
+
+      ],
+      // Set content elements in the order to display.
+      content: [
+        {
+          type:"text",
+          text: "{Desc_}"
+        },
+        {
+          type:"text",
+          text:"{LINK}"
+        },
+      ]
+    }
 });
 //layerL4 added to map with visibility assigned as false to have only layerL3 to display on open
   map.add(layerL4);
